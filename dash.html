@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioSync AI Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js'></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    window.AgentInitializer.init({
+      agentRenderURL: "https://agent.jotform.com/01965f10fab97ec4a33ab2e18a320103c189",
+      rootId: "JotformAgent-01965f10fab97ec4a33ab2e18a320103c189",
+      formID: "01965f10fab97ec4a33ab2e18a320103c189",
+      queryParams: ["skipWelcome=1", "maximizable=1"],
+      domain: "https://www.jotform.com",
+      isDraggable: false,
+      background: "linear-gradient(180deg, #6C73A8 0%, #6C73A8 100%)",
+      buttonBackgroundColor: "#0066C3",
+      buttonIconColor: "#FFFFFF",
+      variant: false,
+      customizations: {
+        "greeting": "Yes",
+        "greetingMessage": "Hi! How can I assist you?",
+        "openByDefault": "No",
+        "pulse": "Yes",
+        "position": "right",
+        "autoOpenChatIn": "1"
+      },
+      isVoice: false,
+    });
+  });
+</script>
+    
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">🩺dAIgnose</div>
+                <button id="toggle-sidebar" class="toggle-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="navigation">
+                <ul>
+
+                    <li class="active"><a href="#dashboard" class="nav-link"><span class="icon"><i class="fas fa-home"></i></span><span class="text">Dashboard</span></a></li>
+                    <li><a href="#simulations" class="nav-link"><span class="icon"><i class="fas fa-microscope"></i></span><span class="text">What-If Simulations</span></a></li>
+                    <li><a href="#food" class="nav-link"><span class="icon"><i class="fas fa-apple-alt"></i></span><span class="text">Food Forecast</span></a></li>
+                    <li><a href="#medicine" class="nav-link"><span class="icon"><i class="fas fa-pills"></i></span><span class="text">Medicine Checker</span></a></li>
+                    <li><a href="#environment" class="nav-link"><span class="icon"><i class="fas fa-cloud-sun"></i></span><span class="text">Environment Sync</span></a></li>
+                    <li><a href="#profile" class="nav-link"><span class="icon"><i class="fas fa-user"></i></span><span class="text">Profile / Logout</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h1 class="animate-fade-in">Welcome, Gaurav</h1>
+                <div class="user-controls">
+                    <button id="dark-mode-toggle"><i class="fas fa-moon"></i></button>
+                    <button id="notifications"><i class="fas fa-bell"></i></button>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="dashboard-section">
+                    <h2>👤 Digital Twin Summary</h2>
+                    <div class="metrics">
+                        <div class="metric-card">
+                            <div class="metric-icon"><i class="fas fa-heartbeat"></i></div>
+                            <div class="metric-details">
+                                <div class="metric-title">Heart Rate</div>
+                                <div class="metric-value">76 bpm</div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon"><i class="fas fa-tint"></i></div>
+                            <div class="metric-details">
+                                <div class="metric-title">Glucose</div>
+                                <div class="metric-value">Normal</div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon"><i class="fas fa-brain"></i></div>
+                            <div class="metric-details">
+                                <div class="metric-title">Prediction</div>
+                                <div class="metric-value">Mental fatigue ↑</div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon"><i class="fas fa-wind"></i></div>
+                            <div class="metric-details">
+                                <div class="metric-title">AQI</div>
+                                <div class="metric-value">High — Use Mask</div>
+                            </div>
+                        </div>
+                        <div id="metric-info-modal" class="modal hidden">
+                            <div class="modal-content">
+                                <span class="close-btn">&times;</span>
+                                <div id="modal-title" class="modal-header"></div>
+                                <div id="modal-body" class="modal-body"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <button class="primary-button" id="run-simulation"><i class="fas fa-search"></i> Run Simulation</button>
+                </div>
+                
+                <div class="dashboard-section hidden" id="what-if-section">
+                    <h2>What-If Simulations</h2>
+                    <div class="simulation-container">
+                        <div class="simulation-controls">
+                            <h3>Change Parameters</h3>
+                            <div class="param-control">
+                                <label for="sleep">Sleep (hours)</label>
+                                <input type="range" id="sleep" min="4" max="10" value="7" step="0.5">
+                                <span id="sleep-value">7</span>
+                            </div>
+                            <div class="param-control">
+                                <label for="exercise">Exercise (minutes)</label>
+                                <input type="range" id="exercise" min="0" max="120" value="30" step="5">
+                                <span id="exercise-value">30</span>
+                            </div>
+                            <div class="param-control">
+                                <label for="stress">Stress Level</label>
+                                <input type="range" id="stress" min="1" max="10" value="5" step="1">
+                                <span id="stress-value">5</span>
+                            </div>
+                            <button class="primary-button" id="simulate-button">Simulate Impact</button>
+                        </div>
+                        <div class="simulation-results">
+                            <h3>Predicted Outcomes</h3>
+                            <div id="simulation-results-container">
+                                <p>Run a simulation to see predicted outcomes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-section hidden" id="food-section">
+                    <h2>Food Forecast</h2>
+                    <div id="food-fact" class="food-fact">🍋 Did you know lemons contain more sugar than strawberries?</div>
+                
+                    <div class="food-recommendations">
+                        <div class="food-card">
+                            <h3>Recommended Today</h3>
+                            <ul class="food-list" id="recommended-foods">
+                                <li><i class="fas fa-leaf"></i> Mixed green salad</li>
+                                <li><i class="fas fa-apple-alt"></i> Apple</li>
+                                <li><i class="fas fa-seedling"></i> Brown rice</li>
+                                <li><i class="fas fa-fish"></i> Salmon (omega-3 boost)</li>
+                            </ul>
+                            <div class="food-reason">Based on your sleep pattern and stress levels</div>
+                        </div>
+                        <div class="food-card">
+                            <h3>Avoid Today</h3>
+                            <ul class="food-list" id="avoid-foods">
+                                <li><i class="fas fa-coffee"></i> Caffeine after 3pm</li>
+                                <li><i class="fas fa-wine-glass-alt"></i> Alcohol</li>
+                                <li><i class="fas fa-candy-cane"></i> High sugar foods</li>
+                            </ul>
+                            <div class="food-reason">Due to elevated cortisol levels</div>
+                        </div>
+                    </div>
+                
+                    <button id="surprise-me" class="fun-button">🎲 Surprise Me!</button>
+                </div>
+                
+                
+                <div class="dashboard-section hidden" id="medicine-section">
+                    <h2>Medicine Checker</h2>
+                    <div class="medicine-checker">
+                        <div class="medicine-input">
+                            <input type="text" id="medicine-search" placeholder="Enter medicine name...">
+                            <button class="primary-button" id="check-medicine">Check</button>
+                        </div>
+                        <div class="medicine-results">
+                            <h3>Safety Check Results</h3>
+                            <div id="medicine-result-container">
+                                <p>Enter a medicine to check for interactions.</p>
+                                <p class="hint">Try: aspirin, ibuprofen, paracetamol, lisinopril, or amoxicillin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-section hidden" id="environment-section">
+                    <h2>Environment Sync</h2>
+                    <div class="environment-data">
+                        <div class="env-card">
+                            <div class="env-title">Current Location</div>
+                            <div class="env-value" id="env-location">Detecting...</div>
+                            <div class="env-details">
+                                <div class="env-metric">
+                                    <span class="env-metric-label">AQI:</span>
+                                    <span class="env-metric-value" id="env-aqi">Loading...</span>
+                                </div>
+                                <div class="env-metric">
+                                    <span class="env-metric-label">Temperature:</span>
+                                    <span class="env-metric-value" id="env-temp">Loading...</span>
+                                </div>
+                                <div class="env-metric">
+                                    <span class="env-metric-label">Humidity:</span>
+                                    <span class="env-metric-value" id="env-humidity">Loading...</span>
+                                </div>
+                                <div class="env-metric">
+                                    <span class="env-metric-label">Pollen:</span>
+                                    <span class="env-metric-value" id="env-pollen">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="env-recommendation" id="env-recommendation">
+                                <strong>Recommendation:</strong> Fetching latest data...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="dashboard-section hidden" id="profile-section">
+                    <h2>Profile</h2>
+                    <div class="profile-container">
+                        <div class="profile-info">
+                            <div class="profile-pic"><i class="fas fa-user-circle"></i></div>
+                            <div class="profile-details">
+                                <h3>Gaurav</h3>
+                                <p>Age: 34</p>
+                                <p>Height: 178cm</p>
+                                <p>Weight: 74kg</p>
+                                <p>Blood Type: O+</p>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="secondary-button" id="editProfileBtn">
+                                <i class="fas fa-edit"></i> Edit Profile
+                              </button>
+                              
+                            <button class="secondary-button"><i class="fas fa-cog"></i> Preferences</button>
+                            <button class="secondary-button danger"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="edit-profile.js"></script>
+</body>
+</html>
